@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style//patient.css"/>
+    <title>Epidemiology Report</title>
+</head>
+
+<body>
+  <header class="header">
+    <h1>hi patient!!</h1>
+  </header>
+    
+    <input type="text" placeholder="patient id" name="patientId" id="patientId" />
+    <table class="table">
+        <tr style="display: none;" id="trLocations">
+            <th>from</th>
+            <th>to</th>
+            <th>city</th>
+            <th>location</th>
+        </tr>
+        <tbody class="locations"></tbody>
+    </table>
+
+    <form style="display: none;" id="addForm">
+        <input type="datetime-local" id="fromDate" placeholder="from date">
+        <input type="datetime-local" id="toDate" placeholder="to date">
+        <input type="text" id="city-name" placeholder="city">
+        <input type="text" id="location-name" placeholder="location">
+        <input type="button" value="Add location" id="addLocation">
+    </form>
+    <script type="module" src="./privatePatient.js"></script>
+
+</body>
+
+</html>
