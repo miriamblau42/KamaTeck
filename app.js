@@ -4,7 +4,7 @@ const sortByCity = document.getElementById('inputSortCity');
 const displayLocationsbyCity = (locations) => {
     document.getElementById('tblLocations').style.display = "table-row"
     const tBody = document.querySelector('.locations');
-        tBody.innerHTML = '';
+    tBody.innerHTML = '';
     locations.forEach(locationy => {
 
         let tr = tBody.insertRow();
@@ -23,31 +23,61 @@ const displayLocationsbyCity = (locations) => {
         td3.appendChild(textNode2);
 
         let td4 = tr.insertCell(3);
-        let textNode3 = document.createTextNode(locationy.location);
+        let textNode3 = document.createTextNode(locationy.place);
         td4.appendChild(textNode3);
     });
 
 
 }
 
+const getLocations = () =>
+{
+    let locations = [];
+    fetch("https://localhost:44326/api/Location", {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response =>
+             response.json())
+        .then(data => {
+            console.log(data);
+            locations = data;
 
+            locations.sort((a, b) => b.toDate - a.toDate);
+
+            displayLocationsbyCity(locations)
+        })
+        .catch(error => console.error('Unable to get Locations.', error));
+
+}
 const sortCities = (cityName) => {
 
-    const sortedLocations = [];
-    
-        sortedLocations.length=0;
-        pationts.forEach(patient => {
-            patient.locationArr.forEach(lo => {
-                if (lo.city.includes(cityName)) {
-                    sortedLocations.push(lo);
-                }
-            });
-        });
-      
-        sortedLocations.sort((a, b) => b.toDate - a.toDate);
+    let sortedLocations = [];
 
-        displayLocationsbyCity(sortedLocations)
+    sortedLocations.length = 0;
+    fetch(`https://localhost:44326/api/Location/${cityName}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
+    })
+        .then(response =>
+             response.json())
+        .then(data => {
+            console.log(data);
+            sortedLocations = data;
+
+            sortedLocations.sort((a, b) => b.toDate - a.toDate);
+
+            displayLocationsbyCity(sortedLocations)
+        })
+        .catch(error => console.error('Unable to get Locations.', error));
+
+}
 
 
 
@@ -55,6 +85,7 @@ const sortCities = (cityName) => {
 // sortByCity.addEventListener('input',sortCities(sortByCity.value));
 
 
-sortByCity.onkeyup = ()=>{
+sortByCity.onkeyup = () => {
     sortCities(sortByCity.value);
 } 
+getLocations();

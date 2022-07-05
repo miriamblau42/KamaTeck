@@ -8,7 +8,7 @@ export class Location{
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.city = CityName;
-        this.location = location;
+        this.place = location;
     }
     
 
