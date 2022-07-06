@@ -78,7 +78,35 @@ const sortCities = (cityName) => {
         .catch(error => console.error('Unable to get Locations.', error));
 
 }
+const getRandom = () =>{
+    let promise = new Promise((resolve,reject)=>
+    {
+        setTimeout(()=>{ resolve(Math.floor(Math.random()*10)+1); reject('error');},3000);
+        
+    })
+    .then(result=> alert(result),
+          error => alert(error));
+}
+getRandom();
 
+const capArray =(arr)=>
+{
+   let capitalLetter =[];
+    let promise = new Promise((resolve,reject)=>
+    {   
+         resolve(
+            arr.forEach((word)=>{capitalLetter.push(word.toUpperCase());})
+          );
+          reject(error)   
+    })
+    .then((result)=>{   
+    capitalLetter = capitalLetter.sort();
+    })
+    .then(result=>alert(capitalLetter),
+        error => alert('doesnt contain only words'))   
+}
+capArray(['kame','tek'])
+capArray(['kame','tek',4])
 
 
 
