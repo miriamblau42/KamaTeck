@@ -74,6 +74,7 @@ const postLocation = (fromDate, toDate, CityName, location) => {
     })
         .then(console.log("succsess to post location"))
         .catch(error => console.error('Unable to post location.', error));
+    getLocationsById(currentPatient.id);
 }
 const ereaseLocation = (locationId) => {
     currentPatient.deleteLocation(locationId);
