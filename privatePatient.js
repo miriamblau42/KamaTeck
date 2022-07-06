@@ -65,10 +65,9 @@ const postLocation = (fromDate, toDate, CityName, location) => {
 
     let locationy = new Location(fromDate, toDate, CityName, location);
     
-    fetch(`https://localhost:44326/api/Location/${currentPatient.id}`, {
+    fetch('https://localhost:44326/api/Location/'+currentPatient.id, {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(locationy)
